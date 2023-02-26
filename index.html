@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Notes App</title>
+</head>
+<body>
+	<h1>Notes App</h1>
+	<textarea id="new-note" placeholder="Enter a new note"></textarea>
+	<button id="add-note">Add Note</button>
+	<ul id="notes"></ul>
+
+	<script>
+		// Get references to the DOM elements
+		const newNoteInput = document.getElementById('new-note');
+		const addNoteButton = document.getElementById('add-note');
+		const notesList = document.getElementById('notes');
+
+		// Initialize the notes array
+		let notes = [];
+
+		// Add event listener to the Add Note button
+		addNoteButton.addEventListener('click', () => {
+			// Get the value of the new note input
+			const newNote = newNoteInput.value.trim();
+
+			if (newNote !== '') {
+				// Add the new note to the notes array
+				notes.push(newNote);
+
+				// Clear the new note input
+				newNoteInput.value = '';
+
+				// Render the notes list
+				renderNotes();
+			}
+		});
+
+		// Function to render the notes list
+		function renderNotes() {
+			// Clear the current notes list
+			notesList.innerHTML = '';
+
+			// Loop through the notes array and create a new li element for each note
+			for (let note of notes) {
+				const li = document.createElement('li');
+				li.innerText = note;
+				notesList.appendChild(li);
+			}
+		}
+	</script>
+</body>
+</html>
